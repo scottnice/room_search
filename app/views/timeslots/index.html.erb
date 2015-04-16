@@ -1,0 +1,32 @@
+<h1>Listing timeslots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Day,</th>
+      <th>References</th>
+      <th>Room</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @timeslots.each do |timeslot| %>
+      <tr>
+        <td><%= timeslot.start_time %></td>
+        <td><%= timeslot.end_time %></td>
+        <td><%= timeslot.day %></td>
+        <td><%= timeslot.room_id %></td>
+        <td><%= link_to 'Show', timeslot %></td>
+        <td><%= link_to 'Edit', edit_timeslot_path(timeslot) %></td>
+        <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Timeslot', new_timeslot_path %>

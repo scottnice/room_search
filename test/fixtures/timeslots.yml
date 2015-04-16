@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: timeslots
+#
+#  id         :integer          not null, primary key
+#  start_time :time
+#  end_time   :time
+#  day        :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  room_id    :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: <%= Time.now %>
+  end_time: <%= Time.now + 1.hour %>
+  day: MONDAY
+  room: one
+
+two:
+  start_time: '23:00:00'
+  end_time: '23:00:00'
+  day: WEDNERDSDAY
+  room: one
+
+time_to_high:
+  start_time: '24:00:00'
+  end_time: '24:00:00'
+  day: WEDNERDSDAY
+  room: one
+
+time_to_low:
+  start_time: '-01:00:00'
+  end_time: '-01:00:00'
+  day: WEDNERDSDAY
+  room: one

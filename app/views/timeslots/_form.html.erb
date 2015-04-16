@@ -1,0 +1,33 @@
+<%= form_for(@timeslot) do |f| %>
+  <% if @timeslot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>
+
+      <ul>
+      <% @timeslot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= select_tag :start_time, options_for_select((0..24).to_a)%>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= select_tag :end_time, options_for_select((0..24).to_a) %>
+  </div>
+  <div class="field">
+    <%= f.label :day %><br>
+    <%= select_tag :day, options_for_select([ ['Monday','MONDAY'], ['Tuesday','TUESDAY'], ['Wednesday','WEDNESDAY'], ['Thursday','THURSDAY'], ['Friday','FRIDAY'], ['Saturday','SATURDAY'], ['Sunday','SUNDAY']]) %>
+  </div>
+  <div class="field">
+    <%= f.label :room_id %><br>
+    <%= f.select :room_id, Room.all.collect{ |r| [r.name, r.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
