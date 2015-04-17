@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root "rooms#index"
+
   resources :timeslots
 
   resources :rooms
