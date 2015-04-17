@@ -21,7 +21,7 @@ class Timeslot < ActiveRecord::Base
   validate :check_if_date_comes_before
   validate :check_if_day_is_valid
   validate :time_slot_atleast_one_hour
-  validate :time_slots_dont_overlap
+  validate :time_slots_dont_overlap, :on => [:create, :update]
 
   private
 
@@ -58,10 +58,11 @@ class Timeslot < ActiveRecord::Base
   end
 
   def time_slots_dont_overlap
-    times = Timeslot.where(day: day).to_a
+    times = Timeslot.where(day: day, room_id: room_id).where.not(id: self.id)
     times.each do |atime|
-      if overlaps?(atime, self) and atime.id != id
-        errors.add(:start_time, "Times cannot overlap")
+      puts "OVERLAYS:::#{overlaps?(atime, self)}, #{atime.inspect}, #{self.inspect}"
+      if overlaps?(atime, self)
+        errors.add(:start_time, "Times cannot overlap #{atime.inspect}")
         return false
       end
     end
@@ -69,7 +70,7 @@ class Timeslot < ActiveRecord::Base
   end
 
   def overlaps?(x, y)
-    (x.start_time - y.end_time) * (y.start_time - x.end_time) > 0
+    ((x.start_time.hour*60 + x.start_time.min) - (y.end_time.hour*60+y.end_time.min)) * ((y.start_time.hour*60 + y.start_time.min) - (x.end_time.hour * 60 + x.end_time.min)) > 0
   end
 
 end

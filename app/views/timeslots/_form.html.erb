@@ -15,11 +15,11 @@
 <legend>Enter Timeslot Details</legend>
   <div class="field">
     <%= f.label :start_time %><br>
-    <%= f.time_select :start_time, { minute_step: 10 } %>
+    <%= f.time_select :start_time, { minute_step: 10, ignore_date: true } %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br>
-    <%= f.time_select :end_time, { minute_step: 10 } %>
+    <%= f.time_select :end_time, { minute_step: 10, ignore_date: true } %>
   </div>
   <div class="field">
     <%= f.label :day %><br>

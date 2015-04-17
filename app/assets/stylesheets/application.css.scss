@@ -11,6 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require rooms
+ *= require scaffolds
+ *= require timeslots
  *= require_self
  */
 
