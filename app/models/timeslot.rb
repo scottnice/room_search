@@ -69,8 +69,18 @@ class Timeslot < ActiveRecord::Base
     return true
   end
 
-  def overlaps?(x, y)
-    ((x.start_time.hour*60 + x.start_time.min) - (y.end_time.hour*60+y.end_time.min)) * ((y.start_time.hour*60 + y.start_time.min) - (x.end_time.hour * 60 + x.end_time.min)) > 0
+  def overlaps?(time_slot1, time_slot2)
+    slot1Start = convertTimeToMinutes(time_slot1.start_time)
+    slot1End = convertTimeToMinutes(time_slot1.end_time)
+    slot2Start = convertTimeToMinutes(time_slot2.start_time)
+    slot2End = convertTimeToMinutes(time_slot2.end_time)
+
+    (slot1Start - slot2End) * (slot2Start - slot1End) > 0
+
+  end
+
+  def convertTimeToMinutes(time)
+    time.hour * 60 + time.min
   end
 
 end

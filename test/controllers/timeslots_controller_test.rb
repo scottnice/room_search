@@ -35,7 +35,7 @@ class TimeslotsControllerTest < ActionController::TestCase
   end
 
   test "should update timeslot" do
-    patch :update, id: @timeslot, timeslot: { day: "SUNDAY", end_time: @timeslot.end_time, room_id: @timeslot.room_id, start_time: @timeslot.start_time }
+    patch :update, id: @timeslot, timeslot: { day: @timeslot.day, end_time: @timeslot.end_time, room_id: @timeslot.room_id, start_time: @timeslot.start_time }
     assert_redirected_to timeslot_path(assigns(:timeslot))
   end
 
