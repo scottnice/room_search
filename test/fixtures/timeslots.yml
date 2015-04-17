@@ -15,24 +15,30 @@
 
 one:
   start_time: <%= Time.now %>
-  end_time: <%= Time.now + 1.hour %>
+  end_time: <%= Time.now + 2.hour %>
   day: MONDAY
   room: one
 
 two:
   start_time: '23:00:00'
   end_time: '23:00:00'
-  day: WEDNERDSDAY
+  day: WEDNESDAY
   room: one
 
-time_to_high:
-  start_time: '24:00:00'
-  end_time: '24:00:00'
-  day: WEDNERDSDAY
+good_day:
+  start_time: '20:00:00'
+  end_time: '23:00:00'
+  day: MONDAY
   room: one
 
-time_to_low:
-  start_time: '-01:00:00'
-  end_time: '-01:00:00'
-  day: WEDNERDSDAY
+bad_day:
+  start_time: '20:00:00'
+  end_time: '23:00:00'
+  day: SCUMDAY
+  room: one
+
+start_before_end:
+  start_time: '20:00:00'
+  end_time:   '19:00:00'
+  day: MONDAY
   room: one

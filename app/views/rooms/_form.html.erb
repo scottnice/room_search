@@ -1,3 +1,4 @@
+<div class="room_search_form">
 <%= form_for(@room) do |f| %>
   <% if @room.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +11,8 @@
       </ul>
     </div>
   <% end %>
-
+  <fieldset>
+  <legend>Enter Room Details</legend>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -18,4 +20,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  </fieldset>
 <% end %>
+</div>

@@ -1,3 +1,4 @@
+<div class="room_search_form">
 <%= form_for(@timeslot) do |f| %>
   <% if @timeslot.errors.any? %>
     <div id="error_explanation">
@@ -10,18 +11,19 @@
       </ul>
     </div>
   <% end %>
-
+<fieldset>
+<legend>Enter Timeslot Details</legend>
   <div class="field">
     <%= f.label :start_time %><br>
-    <%= select_tag :start_time, options_for_select((0..24).to_a)%>
+    <%= f.time_select :start_time, { minute_step: 10 } %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br>
-    <%= select_tag :end_time, options_for_select((0..24).to_a) %>
+    <%= f.time_select :end_time, { minute_step: 10 } %>
   </div>
   <div class="field">
     <%= f.label :day %><br>
-    <%= select_tag :day, options_for_select([ ['Monday','MONDAY'], ['Tuesday','TUESDAY'], ['Wednesday','WEDNESDAY'], ['Thursday','THURSDAY'], ['Friday','FRIDAY'], ['Saturday','SATURDAY'], ['Sunday','SUNDAY']]) %>
+    <%= f.select :day, options_for_select([ ['Monday','MONDAY'], ['Tuesday','TUESDAY'], ['Wednesday','WEDNESDAY'], ['Thursday','THURSDAY'], ['Friday','FRIDAY'], ['Saturday','SATURDAY'], ['Sunday','SUNDAY']]) %>
   </div>
   <div class="field">
     <%= f.label :room_id %><br>
@@ -30,4 +32,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  </fieldset>
 <% end %>
+</div>

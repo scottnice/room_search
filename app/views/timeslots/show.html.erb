@@ -2,22 +2,22 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @timeslot.start_time %>
+  <%= @timeslot.start_time.strftime("%H:%M") %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @timeslot.end_time %>
+  <%= @timeslot.end_time.strftime("%H:%M") %>
 </p>
 
 <p>
-  <strong>Day,:</strong>
+  <strong>Day:</strong>
   <%= @timeslot.day %>
 </p>
 
 <p>
   <strong>Room:</strong>
-  <%= @timeslot.room_id %>
+  <%= @timeslot.room.name %>
 </p>
 
 <%= link_to 'Edit', edit_timeslot_path(@timeslot) %> |

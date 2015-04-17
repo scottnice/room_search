@@ -18,7 +18,7 @@ class TimeslotsControllerTest < ActionController::TestCase
 
   test "should create timeslot" do
     assert_difference('Timeslot.count') do
-      post :create, timeslot: { day: @timeslot.day, end_time: @timeslot.end_time, room_id: @timeslot.room_id, start_time: @timeslot.start_time }
+      post :create, timeslot: { day: "SUNDAY", end_time: @timeslot.end_time.hour.to_s, room_id: @timeslot.room_id, start_time: @timeslot.start_time.hour.to_s }
     end
 
     assert_redirected_to timeslot_path(assigns(:timeslot))

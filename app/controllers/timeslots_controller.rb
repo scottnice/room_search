@@ -24,9 +24,7 @@ class TimeslotsController < ApplicationController
   # POST /timeslots
   # POST /timeslots.json
   def create
-    time = Time.new(2000,1,1,0,10) + params["start_time"].to_i.hour
-    time2 = Time.new(2000,1,1,0,10) + params["end_time"].to_i.hour
-    @timeslot = Timeslot.new(start_time: time, end_time: time2, day: :day, room_id: params["timeslot"]["room_id"])
+    @timeslot = Timeslot.new(timeslot_params)
 
     respond_to do |format|
       if @timeslot.save
