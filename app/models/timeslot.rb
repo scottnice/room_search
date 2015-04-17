@@ -60,9 +60,8 @@ class Timeslot < ActiveRecord::Base
   def time_slots_dont_overlap
     times = Timeslot.where(day: day, room_id: room_id).where.not(id: self.id)
     times.each do |atime|
-      puts "OVERLAYS:::#{overlaps?(atime, self)}, #{atime.inspect}, #{self.inspect}"
       if overlaps?(atime, self)
-        errors.add(:start_time, "Times cannot overlap #{atime.inspect}")
+        errors.add(:start_time, "Times cannot overlap, your time is overlapping with #{atime.start_time.strftime("%H:%M")} - #{atime.end_time.strftime("%H:%M")}")
         return false
       end
     end
