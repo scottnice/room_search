@@ -52,6 +52,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    haml (4.0.6)
+      tilt
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.13)
@@ -152,6 +154,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
   factory_girl_rails (~> 4.0)
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   pg
