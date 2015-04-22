@@ -4,11 +4,15 @@
 .timeslots{
   table{
   border-collapse: collapse;
+  font-size: 22px;
   }
-
+table tr th {
+  padding-left: 7px;
+}
 table tr td{
   padding: 5px;
   vertical-align: top;
+  color: blue;
 }
 
 .list_image{
@@ -35,7 +39,7 @@ table tr td{
 }
 
   .list_actions{
-    font-size: x-small;
+    font-size: 15px;
     text-align: right;
     padding-left: lem;
   }

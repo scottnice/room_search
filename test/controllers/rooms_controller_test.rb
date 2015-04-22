@@ -21,7 +21,7 @@ class RoomsControllerTest < ActionController::TestCase
       post :create, room: { name: @room.name+"1" }
     end
 
-    assert_redirected_to room_path(assigns(:room))
+    assert_redirected_to rooms_path
   end
 
   test "should show room" do
@@ -36,7 +36,7 @@ class RoomsControllerTest < ActionController::TestCase
 
   test "should update room" do
     patch :update, id: @room, room: { name: @room.name }
-    assert_redirected_to room_path(assigns(:room))
+    assert_redirected_to rooms_path
   end
 
   test "should destroy room" do

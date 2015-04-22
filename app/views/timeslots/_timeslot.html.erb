@@ -1,0 +1,8 @@
+
+      <tr class= "<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= timeslot.start_time.strftime("%H:%M") %></td>
+        <td><%= timeslot.end_time.strftime("%H:%M") %></td>
+        <td><%= timeslot.day %></td>
+        <td><%= timeslot.room.name %></td>
+        <td><%= timeslot.end_time.hour - timeslot.start_time.hour %> hours</td>
+      </tr>

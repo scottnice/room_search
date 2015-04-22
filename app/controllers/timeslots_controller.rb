@@ -4,7 +4,7 @@ class TimeslotsController < ApplicationController
   # GET /timeslots
   # GET /timeslots.json
   def index
-    @timeslots = Timeslot.all
+    @timeslots = Timeslot.all.order(:day, :room_id, :start_time)
   end
 
   # GET /timeslots/1
@@ -28,7 +28,7 @@ class TimeslotsController < ApplicationController
 
     respond_to do |format|
       if @timeslot.save
-        format.html { redirect_to @timeslot, notice: 'Timeslot was successfully created.' }
+        format.html { redirect_to timeslots_url, notice: 'Timeslot was successfully created.' }
         format.json { render :show, status: :created, location: @timeslot }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TimeslotsController < ApplicationController
   def update
     respond_to do |format|
       if @timeslot.update(timeslot_params)
-        format.html { redirect_to @timeslot, notice: 'Timeslot was successfully updated.' }
+        format.html { redirect_to timeslots_url, notice: 'Timeslot was successfully updated.' }
         format.json { render :show, status: :ok, location: @timeslot }
       else
         format.html { render :edit }

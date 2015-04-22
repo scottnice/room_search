@@ -1,9 +1,28 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @room.name %>
 </p>
+  <% unless @room.timeslots.empty? %>
+  <p>
+  <strong>Timeslots:</strong>
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Day</th>
+      <th>Room</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+  <%= render (@room.timeslots) %>
+
+  <%end%>
+<tr><td><%= link_to 'Edit', edit_room_path(@room) %>
+<%= link_to 'Back', rooms_path %></td></tr>
+  </tbody>
+</table>

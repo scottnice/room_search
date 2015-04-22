@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(:name)
   end
 
   # GET /rooms/1
@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to rooms_url, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       @room.skip_name_validation = true
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to rooms_url, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -60,6 +60,11 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+# GET /display_rooms
+  def display_rooms
+    @rooms = Room.all.order(:name)
   end
 
   private

@@ -17,7 +17,7 @@
         <td><%= timeslot.start_time.strftime("%H:%M") %></td>
         <td><%= timeslot.end_time.strftime("%H:%M") %></td>
         <td><%= timeslot.day %></td>
-        <td><%= timeslot.room_id %></td>
+        <td><%= timeslot.room.name %></td>
         <td class="list_actions">
         <%= link_to 'Show', timeslot %> <br/>
         <%= link_to 'Edit', edit_timeslot_path(timeslot) %> <br/>

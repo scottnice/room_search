@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :rooms
 
+  get 'display_rooms' => 'rooms#display_rooms'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -21,7 +21,7 @@ class TimeslotsControllerTest < ActionController::TestCase
       post :create, timeslot: { day: "SUNDAY", end_time: @timeslot.end_time.hour.to_s, room_id: @timeslot.room_id, start_time: @timeslot.start_time.hour.to_s }
     end
 
-    assert_redirected_to timeslot_path(assigns(:timeslot))
+    assert_redirected_to timeslots_path
   end
 
   test "should show timeslot" do
@@ -36,7 +36,7 @@ class TimeslotsControllerTest < ActionController::TestCase
 
   test "should update timeslot" do
     patch :update, id: @timeslot, timeslot: { day: @timeslot.day, end_time: @timeslot.end_time, room_id: @timeslot.room_id, start_time: @timeslot.start_time }
-    assert_redirected_to timeslot_path(assigns(:timeslot))
+    assert_redirected_to timeslots_path
   end
 
   test "should destroy timeslot" do
