@@ -54,6 +54,69 @@ describe Timeslot do
     expect(timeslot.valid?).to eql(false)
   end
 
+  context 'after' do
+    let(:monday) { Timeslot::DAYS.first }
+    let(:before_timeslot) { create(:timeslot, start_time: Time.now - 2.hours, end_time: Time.now - 1.hours, day: monday) }
+    let(:after_timeslot) { create(:timeslot, start_time: Time.now + 1.hours, end_time: Time.now + 2.hours, day: monday) }
+    let(:in_between_timeslot) { create(:timeslot, start_time: Time.now - 1.hour, end_time: Time.now + 1.hour, day: monday) }
+
+    context 'starts_after' do
+      it "gets all timeslots starts after now" do
+        expect(Timeslot.starts_after(Time.now, monday)).to include(after_timeslot)
+      end
+
+      it "gets no timeslots before now" do
+        expect(Timeslot.starts_after(Time.now, monday)).not_to include(before_timeslot)
+      end
+
+      it "does not get overlapping timeslots" do
+        expect(Timeslot.starts_after(Time.now, monday)).not_to include(in_between_timeslot)
+      end
+    end
+
+    context 'ends_after' do
+      it "gets all timeslots ends after now" do
+        expect(Timeslot.ends_after(Time.now, monday)).to include(after_timeslot)
+      end
+
+      it "gets no timeslots that end before now" do
+        expect(Timeslot.ends_after(Time.now, monday)).not_to include(before_timeslot)
+      end
+
+      it "does get timeslots that end after" do
+        expect(Timeslot.ends_after(Time.now, monday)).to include(in_between_timeslot)
+      end
+    end
+
+    context 'starts_before_ends_after' do
+      it "should not get any time slots that start and end after" do
+        expect(Timeslot.starts_before_ends_after(Time.now, monday)).not_to include(after_timeslot)
+      end
+
+      it "gets no timeslots that start and end before now" do
+        expect(Timeslot.starts_before_ends_after(Time.now, monday)).not_to include(before_timeslot)
+      end
+
+      it "does get timeslots that start before and end after" do
+        expect(Timeslot.starts_before_ends_after(Time.now, monday)).to include(in_between_timeslot)
+      end
+    end
+
+  end
+
+
+
+  # context 'find not between' do
+  #   it "should not find any in between given dates" do
+  #     monday = Timeslot::DAYS.first
+
+  #     create(:timeslot, start_time: Time.now - 5.hours, end_time: Time.now - 4.hours, day: monday)
+
+  #     expect(Timeslot.notBetween(Time.now, monday)).to be_nil
+  #   end
+
+  # end
+
   context 'overlap' do
     let(:timeslot) { create(:timeslot).dup }
 

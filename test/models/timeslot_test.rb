@@ -70,4 +70,5 @@ class TimeslotTest < ActiveSupport::TestCase
     assert time2.invalid?, "Times shouldn't overlap This #{time.start_time} #{time.end_time} overlaps with this #{time2.start_time} #{time2.end_time}"
 
   end
+
 end

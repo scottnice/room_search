@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150416174548) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "rooms", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -28,6 +31,6 @@ ActiveRecord::Schema.define(version: 20150416174548) do
     t.integer  "room_id"
   end
 
-  add_index "timeslots", ["room_id"], name: "index_timeslots_on_room_id"
+  add_index "timeslots", ["room_id"], name: "index_timeslots_on_room_id", using: :btree
 
 end

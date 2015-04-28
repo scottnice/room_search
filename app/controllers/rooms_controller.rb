@@ -67,6 +67,16 @@ class RoomsController < ApplicationController
     @rooms = Room.all.order(:name)
   end
 
+  def find_empty_rooms
+    @time = DateTime.parse(find_room_params[:time])
+    @day = find_room_params[:day]
+
+    rooms_that_are_taken_ids = Timeslot.starts_before_ends_after(@time, @day).collect(&:room_id).uniq
+
+    @rooms = Room.where.not(id: rooms_that_are_taken_ids)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -76,5 +86,9 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:name)
+    end
+
+    def find_room_params
+      params.permit(:day, :time)
     end
 end

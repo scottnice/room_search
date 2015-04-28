@@ -24,6 +24,22 @@ class Timeslot < ActiveRecord::Base
   validate :time_slot_atleast_one_hour, if: ->() { start_and_end_time_present? }
   validate :time_slots_dont_overlap, on: [:create, :update]
 
+  def self.for_day(day)
+    where(day: day)
+  end
+
+  def self.starts_after(time, day)
+    where("start_time >= ? AND day= ? ", time, day)
+  end
+
+  def self.ends_after(time, day)
+    where("end_time >= ? AND day= ? ", time, day)
+  end
+
+  def self.starts_before_ends_after(time, day)
+    where("start_time <= ? AND end_time >= ? AND day = ?", time, time, day)
+  end
+
   def time_difference_in_hours
     @hours ||= ((end_time - start_time) / 3600)
   end
@@ -43,6 +59,7 @@ class Timeslot < ActiveRecord::Base
   def check_if_day_is_valid
     errors.add(:day, "must be either " + DAYS.join(",")) unless DAYS.include?(day)
   end
+
 
   def time_slot_atleast_one_hour
     errors.add(:end_time, "must be atleast an hour after start time.") if (end_time.hour - start_time.hour) < 1
