@@ -104,19 +104,6 @@ describe Timeslot do
 
   end
 
-
-
-  # context 'find not between' do
-  #   it "should not find any in between given dates" do
-  #     monday = Timeslot::DAYS.first
-
-  #     create(:timeslot, start_time: Time.now - 5.hours, end_time: Time.now - 4.hours, day: monday)
-
-  #     expect(Timeslot.notBetween(Time.now, monday)).to be_nil
-  #   end
-
-  # end
-
   context 'overlap' do
     let(:timeslot) { create(:timeslot).dup }
 
