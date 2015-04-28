@@ -24,7 +24,7 @@
                 <li><%= link_to 'Rooms', rooms_path %></li>
                 <li><%= link_to 'TimeSlots', timeslots_path %></li>
                 <% if @rooms %>
-                  <li><%= link_to 'TimeSlots JSON', display_rooms_path(:format => :json) %></li>
+                  <li><%= link_to 'TimeSlots JSON', display_rooms_path(format: :json) %></li>
                 <% end %>
               </ul>
             </div>

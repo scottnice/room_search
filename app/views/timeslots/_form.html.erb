@@ -23,11 +23,11 @@
   </div>
   <div class="field">
     <%= f.label :day %><br>
-    <%= f.select :day, options_for_select([ ['Monday','MONDAY'], ['Tuesday','TUESDAY'], ['Wednesday','WEDNESDAY'], ['Thursday','THURSDAY'], ['Friday','FRIDAY'], ['Saturday','SATURDAY'], ['Sunday','SUNDAY']]) %>
+    <%= f.select :day, options_for_select(day_options, selected: @timeslot.day), prompt: "Please Select Day" %>
   </div>
   <div class="field">
     <%= f.label :room_id %><br>
-    <%= f.select :room_id, Room.all.collect{ |r| [r.name, r.id]} %>
+    <%= f.select :room_id, room_options, prompt: "Please Select Room" %>
   </div>
   <div class="actions">
     <%= f.submit %>
