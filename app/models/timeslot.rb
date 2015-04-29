@@ -14,7 +14,7 @@
 class Timeslot < ActiveRecord::Base
   belongs_to :room
 
-  DAYS = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'].freeze
+  DAYS = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'].freeze
 
   validates_uniqueness_of :room_id, scope: [:day, :room_id, :start_time, :end_time]
 

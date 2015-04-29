@@ -68,12 +68,22 @@ class RoomsController < ApplicationController
   end
 
   def find_empty_rooms
-    @time = DateTime.parse(find_room_params[:time])
-    @day = find_room_params[:day]
+    begin
+      @time = DateTime.parse(find_room_params[:time])
 
-    rooms_that_are_taken_ids = Timeslot.starts_before_ends_after(@time, @day).collect(&:room_id).uniq
+      @day = find_room_params[:day].tr('"', "").upcase
 
-    @rooms = Room.where.not(id: rooms_that_are_taken_ids)
+      if Timeslot::DAYS.include?(@day) or @day = Timeslot::DAYS[@day.to_i]
+
+        rooms_that_are_taken_ids = Timeslot.starts_before_ends_after(@time, @day).collect(&:room_id).uniq
+
+        @rooms = Room.where.not(id: rooms_that_are_taken_ids)
+      end
+    rescue
+
+    end
+
+
   end
 
 
