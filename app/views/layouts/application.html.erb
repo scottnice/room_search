@@ -8,28 +8,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class='<%= controller.controller_name %>'>
-<div id="container">
-<div class="row">
+<div id="container-fluid">
+<div class="row-fluid">
 <div id="banner">
   <%= image_tag("logo.png") %>
   <%= @page_title || "Room Search" %>
 </div>
 </div>
 <div id="columns">
-  <div class="row">
-          <div id="sidebar" class=".col-xs-3">
-            <!-- sidebar content -->
-            <div id="side">
-              <ul>
-                <li><%= link_to 'Rooms', rooms_path %></li>
-                <li><%= link_to 'TimeSlots', timeslots_path %></li>
-                <% if @rooms %>
-                  <li><%= link_to 'TimeSlots JSON', display_rooms_path(format: :json) %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-    <div id="main-content" class="col-xs-11.5">
+  <div class="row-fluid">
+    <div class="span1">
+      <!-- sidebar content -->
+      <div id="side">
+        <ul>
+          <li><%= link_to 'Rooms', rooms_path %></li>
+          <li><%= link_to 'TimeSlots', timeslots_path %></li>
+          <% if @rooms %>
+            <li><%= link_to 'TimeSlots JSON', display_rooms_path(format: :json) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="span11">
       <div id="main">
         <p id="notice"><%= notice %></p>
         <%= yield %>

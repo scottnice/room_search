@@ -21,12 +21,12 @@
     <%= f.label :end_time %><br>
     <%= f.time_select :end_time, { minute_step: 10, ignore_date: true } %>
   </div>
-  <div class="field">
-    <%= f.label :day %><br>
+  <div class="centered">
+    <%= f.label :day %>
     <%= f.select :day, options_for_select(day_options, selected: @timeslot.day), prompt: "Please Select Day" %>
   </div>
-  <div class="field">
-    <%= f.label :room_id %><br>
+  <div class="centered">
+    <%= f.label :room_id %>
     <%= f.select :room_id, room_options, prompt: "Please Select Room" %>
   </div>
   <div class="actions">

@@ -57,7 +57,7 @@ class Timeslot < ActiveRecord::Base
   end
 
   def check_if_day_is_valid
-    errors.add(:day, "must be either " + DAYS.join(",")) unless DAYS.include?(day)
+    errors.add(:day, "must be either " + DAYS.join(", ")) unless DAYS.include?(day)
   end
 
 
